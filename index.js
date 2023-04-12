@@ -1,8 +1,14 @@
-// const fs = require('fs/promises');
+const counter = (number) => {
+return () => {
+  return number++;
+}
+}
 
-const arr = [1, 2, 3];
-arr.splice(1, 1);
+const conterOne = counter(1);
 
-console.log(arr)
+console.log(conterOne());
+console.log(conterOne());
+console.log(conterOne());
+console.log(conterOne());
 
 
