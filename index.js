@@ -1,14 +1,25 @@
-const counter = (number) => {
-return () => {
-  return number++;
-}
-}
+const http = require('http');
 
-const conterOne = counter(1);
+let refreshCounter = 0;
 
-console.log(conterOne());
-console.log(conterOne());
-console.log(conterOne());
-console.log(conterOne());
+const server = http.createServer((req, res) => {
+  refreshCounter++;
 
+  switch (req.url) {
+    case '/portfolio':
+      res.write('PORTFOLIO ' + refreshCounter);
+      break;
 
+    case '/socials':
+      res.write('SOCIALS ' + refreshCounter);
+      break;
+
+    default:
+      res.write('HOME ' + refreshCounter);
+      break;
+  }
+
+  res.end();
+});
+
+server.listen(7777);
